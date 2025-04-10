@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import MobileSidebar from "./MobileSidebar";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const Navbar: React.FC = () => {
   return (
@@ -52,6 +53,8 @@ const Navbar: React.FC = () => {
         </div>
         
         <div className="flex items-center gap-2">
+          <ThemeToggle />
+          
           <Button variant="ghost" size="icon" className="relative">
             <Bell className="h-5 w-5" />
             <span className="absolute top-1 right-1.5 flex h-2 w-2 rounded-full bg-accent-500"></span>

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import AuthLayout from "@/components/layout/AuthLayout";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 // Import pages
 import Login from "./pages/Login";
@@ -24,61 +25,63 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          
-          {/* Auth Routes */}
-          <Route element={<AuthLayout />}>
-            <Route path="/login" element={<Login />} />
-          </Route>
-          
-          {/* Protected Routes */}
-          <Route element={<MainLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+  <ThemeProvider defaultTheme="system" storageKey="supra-hrms-theme">
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Navigate to="/login" replace />} />
             
-            {/* Employee Management Routes */}
-            <Route path="/employees" element={<EmployeeList />} />
-            <Route path="/employees/add" element={<AddEmployee />} />
-            <Route path="/employees/:id" element={<EmployeeDetail />} />
-            <Route path="/employees/departments" element={<Departments />} />
-            <Route path="/employees/attendance" element={<Attendance />} />
-            <Route path="/employees/leave" element={<LeaveManagement />} />
-            <Route path="/employees/documents" element={<Documents />} />
+            {/* Auth Routes */}
+            <Route element={<AuthLayout />}>
+              <Route path="/login" element={<Login />} />
+            </Route>
             
-            {/* Payroll Routes */}
-            <Route path="/payroll" element={<Payroll />} />
-            <Route path="/payroll/salary-structure" element={<Payroll />} />
-            <Route path="/payroll/monthly" element={<Payroll />} />
-            <Route path="/payroll/payslips" element={<Payroll />} />
+            {/* Protected Routes */}
+            <Route element={<MainLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              
+              {/* Employee Management Routes */}
+              <Route path="/employees" element={<EmployeeList />} />
+              <Route path="/employees/add" element={<AddEmployee />} />
+              <Route path="/employees/:id" element={<EmployeeDetail />} />
+              <Route path="/employees/departments" element={<Departments />} />
+              <Route path="/employees/attendance" element={<Attendance />} />
+              <Route path="/employees/leave" element={<LeaveManagement />} />
+              <Route path="/employees/documents" element={<Documents />} />
+              
+              {/* Payroll Routes */}
+              <Route path="/payroll" element={<Payroll />} />
+              <Route path="/payroll/salary-structure" element={<Payroll />} />
+              <Route path="/payroll/monthly" element={<Payroll />} />
+              <Route path="/payroll/payslips" element={<Payroll />} />
+              
+              {/* Events Routes */}
+              <Route path="/events" element={<Events />} />
+              <Route path="/events/announcements" element={<Events />} />
+              <Route path="/events/celebrations" element={<Events />} />
+              
+              {/* Other Routes */}
+              <Route path="/performance" element={<div className="p-4">Performance module coming soon</div>} />
+              <Route path="/calendar" element={<div className="p-4">Calendar module coming soon</div>} />
+              <Route path="/messages" element={<div className="p-4">Messages module coming soon</div>} />
+              <Route path="/reports" element={<div className="p-4">Reports module coming soon</div>} />
+              <Route path="/settings" element={<div className="p-4">Settings module coming soon</div>} />
+              
+              {/* Logout route */}
+              <Route path="/logout" element={<LogoutHandler />} />
+            </Route>
             
-            {/* Events Routes */}
-            <Route path="/events" element={<Events />} />
-            <Route path="/events/announcements" element={<Events />} />
-            <Route path="/events/celebrations" element={<Events />} />
-            
-            {/* Other Routes */}
-            <Route path="/performance" element={<div className="p-4">Performance module coming soon</div>} />
-            <Route path="/calendar" element={<div className="p-4">Calendar module coming soon</div>} />
-            <Route path="/messages" element={<div className="p-4">Messages module coming soon</div>} />
-            <Route path="/reports" element={<div className="p-4">Reports module coming soon</div>} />
-            <Route path="/settings" element={<div className="p-4">Settings module coming soon</div>} />
-            
-            {/* Logout route */}
-            <Route path="/logout" element={<LogoutHandler />} />
-          </Route>
-          
-          {/* Catch-all route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+            {/* Catch-all route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 // Logout handler component
