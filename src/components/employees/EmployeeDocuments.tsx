@@ -13,8 +13,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { 
   FileText, 
-  FilePdf, 
-  FileImage, 
+  FileIcon, 
+  Image, 
   File,
   Download,
   Eye,
@@ -79,11 +79,11 @@ const documents = [
 const DocumentIcon = ({ fileType }: { fileType: string }) => {
   switch (fileType.toLowerCase()) {
     case "pdf":
-      return <FilePdf className="h-5 w-5 text-red-500" />;
+      return <FileText className="h-5 w-5 text-red-500" />;
     case "jpg":
     case "jpeg":
     case "png":
-      return <FileImage className="h-5 w-5 text-blue-500" />;
+      return <Image className="h-5 w-5 text-blue-500" />;
     case "doc":
     case "docx":
       return <FileText className="h-5 w-5 text-blue-600" />;

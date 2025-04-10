@@ -32,8 +32,8 @@ import {
   Plus,
   FileText,
   File,
-  FileImage,
-  FilePdf,
+  Image,
+  FileIcon,
   Download,
   Eye,
   MoreHorizontal,
@@ -155,11 +155,11 @@ const documentTypes = [
 const DocumentIcon = ({ fileType }: { fileType: string }) => {
   switch (fileType.toLowerCase()) {
     case "pdf":
-      return <FilePdf className="h-5 w-5 text-red-500" />;
+      return <FileText className="h-5 w-5 text-red-500" />;
     case "jpg":
     case "jpeg":
     case "png":
-      return <FileImage className="h-5 w-5 text-blue-500" />;
+      return <Image className="h-5 w-5 text-blue-500" />;
     case "docx":
     case "doc":
       return <FileText className="h-5 w-5 text-blue-600" />;
