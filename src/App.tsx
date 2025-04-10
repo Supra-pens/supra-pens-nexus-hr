@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import AuthLayout from "@/components/layout/AuthLayout";
 
@@ -62,7 +63,7 @@ const App = () => (
 
 // Logout handler component
 const LogoutHandler = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userRole");
     window.location.href = "/login";
