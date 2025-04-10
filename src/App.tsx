@@ -17,6 +17,8 @@ import Departments from "./pages/Departments";
 import Attendance from "./pages/Attendance";
 import LeaveManagement from "./pages/LeaveManagement";
 import Documents from "./pages/Documents";
+import Payroll from "./pages/Payroll";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,9 +51,18 @@ const App = () => (
             <Route path="/employees/leave" element={<LeaveManagement />} />
             <Route path="/employees/documents" element={<Documents />} />
             
+            {/* Payroll Routes */}
+            <Route path="/payroll" element={<Payroll />} />
+            <Route path="/payroll/salary-structure" element={<Payroll />} />
+            <Route path="/payroll/monthly" element={<Payroll />} />
+            <Route path="/payroll/payslips" element={<Payroll />} />
+            
+            {/* Events Routes */}
+            <Route path="/events" element={<Events />} />
+            <Route path="/events/announcements" element={<Events />} />
+            <Route path="/events/celebrations" element={<Events />} />
+            
             {/* Other Routes */}
-            <Route path="/payroll/*" element={<div className="p-4">Payroll module coming soon</div>} />
-            <Route path="/events/*" element={<div className="p-4">Events module coming soon</div>} />
             <Route path="/performance" element={<div className="p-4">Performance module coming soon</div>} />
             <Route path="/calendar" element={<div className="p-4">Calendar module coming soon</div>} />
             <Route path="/messages" element={<div className="p-4">Messages module coming soon</div>} />
