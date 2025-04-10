@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { Search, Plus, MoreHorizontal, Filter } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Mock employee data
 const employees = [
@@ -117,13 +117,20 @@ const EmployeeList: React.FC = () => {
     }
   }, [navigate]);
 
+  // Navigate to employee detail page
+  const goToEmployeeDetail = (id: string) => {
+    navigate(`/employees/${id}`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Employees</h1>
-        <Button className="flex items-center gap-2">
-          <Plus className="h-4 w-4" />
-          <span>Add Employee</span>
+        <Button className="flex items-center gap-2" asChild>
+          <Link to="/employees/add">
+            <Plus className="h-4 w-4" />
+            <span>Add Employee</span>
+          </Link>
         </Button>
       </div>
 
@@ -167,7 +174,11 @@ const EmployeeList: React.FC = () => {
               </TableHeader>
               <TableBody>
                 {filteredEmployees.map((employee) => (
-                  <TableRow key={employee.id}>
+                  <TableRow 
+                    key={employee.id} 
+                    className="cursor-pointer"
+                    onClick={() => goToEmployeeDetail(employee.id)}
+                  >
                     <TableCell className="font-medium">{employee.id}</TableCell>
                     <TableCell>
                       <div className="font-medium">{employee.name}</div>
@@ -189,7 +200,7 @@ const EmployeeList: React.FC = () => {
                     <TableCell className="hidden md:table-cell">
                       {employee.joinDate}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" size="sm">
@@ -198,7 +209,9 @@ const EmployeeList: React.FC = () => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem>View Profile</DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => goToEmployeeDetail(employee.id)}>
+                            View Profile
+                          </DropdownMenuItem>
                           <DropdownMenuItem>Edit Details</DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem className="text-destructive">
