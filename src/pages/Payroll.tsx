@@ -7,7 +7,7 @@ import SalaryStructure from "@/components/payroll/SalaryStructure";
 import PayslipGenerator from "@/components/payroll/PayslipGenerator";
 
 const Payroll = () => {
-  const [activeTab, setActiveTab] = useState("monthly");
+  const [activeTab, setActiveTab] = useState("payslips");
 
   return (
     <div className="flex flex-col gap-4">
@@ -47,3 +47,4 @@ const Payroll = () => {
 };
 
 export default Payroll;
+
