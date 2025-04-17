@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { 
@@ -8,11 +8,15 @@ import {
   MessageSquare, 
   Users, 
   FileText, 
-  BanknoteIcon, 
+  Wallet, 
   BellRing, 
   Settings, 
-  HomeIcon
+  Home,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
+import { useTheme } from "../theme/ThemeProvider";
+import { Button } from "@/components/ui/button";
 
 type NavItem = {
   title: string;
@@ -25,7 +29,7 @@ const navItems: NavItem[] = [
   {
     title: "Dashboard",
     href: "/dashboard",
-    icon: <HomeIcon className="h-5 w-5" />,
+    icon: <Home className="h-5 w-5" />,
   },
   {
     title: "Employees",
@@ -42,7 +46,7 @@ const navItems: NavItem[] = [
   {
     title: "Payroll",
     href: "/payroll",
-    icon: <BanknoteIcon className="h-5 w-5" />,
+    icon: <Wallet className="h-5 w-5" />,
     submenu: [
       { title: "Salary Structure", href: "/payroll/salary-structure" },
       { title: "Monthly Payroll", href: "/payroll/monthly" },
@@ -87,56 +91,102 @@ const navItems: NavItem[] = [
 ];
 
 const Sidebar: React.FC = () => {
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>("Employees");
+  const { theme, setTheme } = useTheme();
+  
+  const toggleSubmenu = (title: string) => {
+    setOpenSubmenu(openSubmenu === title ? null : title);
+  };
+
   return (
-    <aside className="hidden md:flex h-[calc(100vh-4rem)] w-64 flex-col border-r bg-background">
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <nav className="flex-1 overflow-y-auto py-4">
-          <ul className="px-2 space-y-1">
+    <aside className="hidden md:flex h-[calc(100vh-4rem)] w-64 flex-col border-r bg-white dark:bg-gray-900 shadow-sm">
+      <div className="flex-1 overflow-hidden py-2">
+        <div className="px-3 py-2">
+          <div className="flex items-center space-x-2 mb-6">
+            <div className="h-8 w-8 rounded-full bg-primary-800 dark:bg-primary-500"></div>
+            <span className="text-lg font-semibold text-primary-800 dark:text-primary-100">Supra Pens</span>
+          </div>
+        </div>
+        <nav className="flex-1 overflow-y-auto px-3">
+          <ul className="space-y-0.5">
             {navItems.map((item, index) => (
-              <li key={index}>
-                <NavLink
-                  to={item.href}
-                  end={item.href === "/dashboard"}
-                  className={({ isActive }) =>
-                    cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium",
-                      isActive
-                        ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground hover:bg-secondary hover:text-foreground",
-                      "transition-colors"
-                    )
-                  }
-                >
-                  {item.icon}
-                  {item.title}
-                </NavLink>
-                
-                {item.submenu && (
-                  <ul className="ml-6 mt-1 space-y-1">
-                    {item.submenu.map((subItem, subIndex) => (
-                      <li key={subIndex}>
-                        <NavLink
-                          to={subItem.href}
-                          className={({ isActive }) =>
-                            cn(
-                              "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium",
-                              isActive
-                                ? "bg-accent/80 text-accent-foreground"
-                                : "text-muted-foreground hover:bg-secondary hover:text-foreground",
-                              "transition-colors"
-                            )
-                          }
-                        >
-                          {subItem.title}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
+              <li key={index} className="py-0.5">
+                {item.submenu ? (
+                  <div className="mb-1">
+                    <button
+                      onClick={() => toggleSubmenu(item.title)}
+                      className={cn(
+                        "flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                        openSubmenu === item.title
+                          ? "bg-accent/20 text-accent-foreground"
+                          : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+                      )}
+                    >
+                      <div className="flex items-center gap-3">
+                        {item.icon}
+                        <span>{item.title}</span>
+                      </div>
+                      {openSubmenu === item.title ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                    </button>
+                    {openSubmenu === item.title && (
+                      <ul className="mt-1 space-y-1 pl-10 pr-2">
+                        {item.submenu.map((subItem, subIndex) => (
+                          <li key={subIndex}>
+                            <NavLink
+                              to={subItem.href}
+                              className={({ isActive }) =>
+                                cn(
+                                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                                  isActive
+                                    ? "bg-accent text-accent-foreground"
+                                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                                )
+                              }
+                            >
+                              {subItem.title}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ) : (
+                  <NavLink
+                    to={item.href}
+                    end={item.href === "/dashboard"}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                        isActive
+                          ? "bg-accent text-accent-foreground"
+                          : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                      )
+                    }
+                  >
+                    {item.icon}
+                    {item.title}
+                  </NavLink>
                 )}
               </li>
             ))}
           </ul>
         </nav>
+      </div>
+      <div className="border-t p-3">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="w-full justify-start"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          <span className="flex items-center">
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </span>
+        </Button>
       </div>
     </aside>
   );
