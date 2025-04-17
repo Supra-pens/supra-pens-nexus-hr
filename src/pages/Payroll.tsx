@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PayrollTable from "@/components/payroll/PayrollTable";
 import SalaryStructure from "@/components/payroll/SalaryStructure";
+import PayslipGenerator from "@/components/payroll/PayslipGenerator";
 
 const Payroll = () => {
   const [activeTab, setActiveTab] = useState("monthly");
@@ -36,13 +37,7 @@ const Payroll = () => {
               <SalaryStructure />
             </TabsContent>
             <TabsContent value="payslips" className="mt-4">
-              <div className="flex flex-col items-center justify-center py-8">
-                <h3 className="text-lg font-medium mb-1">Payslip Generator</h3>
-                <p className="text-muted-foreground text-sm text-center max-w-md">
-                  Generate and download payslips for employees. 
-                  Select an employee and a payroll period to generate their payslip.
-                </p>
-              </div>
+              <PayslipGenerator />
             </TabsContent>
           </Tabs>
         </CardContent>
