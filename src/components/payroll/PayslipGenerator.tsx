@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { FileText, Download, Printer, Settings } from "lucide-react";
 import { toast } from "sonner";
 
@@ -230,200 +231,202 @@ const PayslipGenerator: React.FC = () => {
       
       {/* Generate Salary Slip Dialog */}
       <Dialog open={isGenerateDialogOpen} onOpenChange={setIsGenerateDialogOpen}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-4xl max-h-[90vh]">
           <DialogHeader>
             <DialogTitle>Salary Slip</DialogTitle>
           </DialogHeader>
           
           {salarySlipData && (
-            <div className="border rounded-md overflow-hidden">
-              {/* Company Header */}
-              <div className="bg-indigo-900 text-white p-4">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                  <div className="text-2xl font-bold">SUPRA PENS</div>
-                  <div className="text-center md:text-right">
-                    <div className="text-lg">GLOBAL WRITINGS</div>
-                    <div className="text-xs">22, BRABOURNE ROAD, 3RD FLOOR, KOLKATA 70001, WEST BENGAL, INDIA</div>
-                    <div className="text-xs">+91 33 2221 8538/ 2234 3007</div>
+            <ScrollArea className="h-[calc(90vh-180px)]">
+              <div className="border rounded-md overflow-hidden">
+                {/* Company Header */}
+                <div className="bg-indigo-900 text-white p-4">
+                  <div className="flex flex-col md:flex-row justify-between items-center">
+                    <div className="text-2xl font-bold">SUPRA PENS</div>
+                    <div className="text-center md:text-right">
+                      <div className="text-lg">GLOBAL WRITINGS</div>
+                      <div className="text-xs">22, BRABOURNE ROAD, 3RD FLOOR, KOLKATA 70001, WEST BENGAL, INDIA</div>
+                      <div className="text-xs">+91 33 2221 8538/ 2234 3007</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="bg-indigo-900 text-white py-1 text-center">
-                <h2 className="text-lg font-medium">Salary Slip</h2>
-              </div>
-              
-              {/* Employee Details */}
-              <div className="p-0">
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Employee Name:</TableCell>
-                      <TableCell>{salarySlipData.employeeName}</TableCell>
-                      <TableCell className="font-medium">Month</TableCell>
-                      <TableCell>{salarySlipData.month}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Employee PAN No:</TableCell>
-                      <TableCell>{salarySlipData.employeePAN}</TableCell>
-                      <TableCell className="font-medium">Year</TableCell>
-                      <TableCell>{salarySlipData.year}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Employee ID:</TableCell>
-                      <TableCell>{salarySlipData.employeeId}</TableCell>
-                      <TableCell className="font-medium">Designation</TableCell>
-                      <TableCell>{salarySlipData.designation}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">D.O.J.:</TableCell>
-                      <TableCell>{salarySlipData.doj}</TableCell>
-                      <TableCell className="font-medium">Working Days</TableCell>
-                      <TableCell>{salarySlipData.workingDays}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">UAN NO:</TableCell>
-                      <TableCell>{salarySlipData.uan}</TableCell>
-                      <TableCell className="font-medium">Unpaid Leave</TableCell>
-                      <TableCell>{salarySlipData.unpaidLeave}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">ESIC NO:</TableCell>
-                      <TableCell>{salarySlipData.esic}</TableCell>
-                      <TableCell className="font-medium">Paid Days</TableCell>
-                      <TableCell>{salarySlipData.paidDays}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-              
-              {/* Earnings and Deductions */}
-              <div className="grid grid-cols-2">
-                <div className="border-t border-r">
-                  <div className="bg-indigo-900 text-white p-2 text-center">Earnings</div>
+                
+                <div className="bg-indigo-900 text-white py-1 text-center">
+                  <h2 className="text-lg font-medium">Salary Slip</h2>
+                </div>
+                
+                {/* Employee Details */}
+                <div className="p-0">
                   <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Description</TableHead>
-                        <TableHead className="text-right">Rate</TableHead>
-                        <TableHead className="text-right">Earned</TableHead>
-                      </TableRow>
-                    </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell>Basic Pay</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
+                        <TableCell className="font-medium">Employee Name:</TableCell>
+                        <TableCell>{salarySlipData.employeeName}</TableCell>
+                        <TableCell className="font-medium">Month</TableCell>
+                        <TableCell>{salarySlipData.month}</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>House Rent Allowance</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
+                        <TableCell className="font-medium">Employee PAN No:</TableCell>
+                        <TableCell>{salarySlipData.employeePAN}</TableCell>
+                        <TableCell className="font-medium">Year</TableCell>
+                        <TableCell>{salarySlipData.year}</TableCell>
                       </TableRow>
-                      {customFields.earnings.map((field, index) => (
-                        <TableRow key={`earning-${index}`}>
-                          <TableCell>{field}</TableCell>
-                          <TableCell className="text-right">0</TableCell>
-                          <TableCell className="text-right">0</TableCell>
-                        </TableRow>
-                      ))}
-                      {/* Empty rows for padding if needed */}
-                      {customFields.earnings.length === 0 && Array.from({ length: 2 }).map((_, i) => (
-                        <TableRow key={`empty-earning-${i}`}>
-                          <TableCell>&nbsp;</TableCell>
-                          <TableCell>&nbsp;</TableCell>
-                          <TableCell>&nbsp;</TableCell>
-                        </TableRow>
-                      ))}
+                      <TableRow>
+                        <TableCell className="font-medium">Employee ID:</TableCell>
+                        <TableCell>{salarySlipData.employeeId}</TableCell>
+                        <TableCell className="font-medium">Designation</TableCell>
+                        <TableCell>{salarySlipData.designation}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">D.O.J.:</TableCell>
+                        <TableCell>{salarySlipData.doj}</TableCell>
+                        <TableCell className="font-medium">Working Days</TableCell>
+                        <TableCell>{salarySlipData.workingDays}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">UAN NO:</TableCell>
+                        <TableCell>{salarySlipData.uan}</TableCell>
+                        <TableCell className="font-medium">Unpaid Leave</TableCell>
+                        <TableCell>{salarySlipData.unpaidLeave}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">ESIC NO:</TableCell>
+                        <TableCell>{salarySlipData.esic}</TableCell>
+                        <TableCell className="font-medium">Paid Days</TableCell>
+                        <TableCell>{salarySlipData.paidDays}</TableCell>
+                      </TableRow>
                     </TableBody>
                   </Table>
                 </div>
                 
-                <div className="border-t">
-                  <div className="bg-indigo-900 text-white p-2 text-center">Deductions</div>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Description</TableHead>
-                        <TableHead className="text-right">Amount</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell>Provident Fund</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.providentFund}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>ESI</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.esi}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>P Tax</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.tax}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>TDS</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.tds}</TableCell>
-                      </TableRow>
-                      {customFields.deductions.map((field, index) => (
-                        <TableRow key={`deduction-${index}`}>
-                          <TableCell>{field}</TableCell>
-                          <TableCell className="text-right">0</TableCell>
+                {/* Earnings and Deductions */}
+                <div className="grid grid-cols-2">
+                  <div className="border-t border-r">
+                    <div className="bg-indigo-900 text-white p-2 text-center">Earnings</div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Description</TableHead>
+                          <TableHead className="text-right">Rate</TableHead>
+                          <TableHead className="text-right">Earned</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>Basic Pay</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>House Rent Allowance</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
+                        </TableRow>
+                        {customFields.earnings.map((field, index) => (
+                          <TableRow key={`earning-${index}`}>
+                            <TableCell>{field}</TableCell>
+                            <TableCell className="text-right">0</TableCell>
+                            <TableCell className="text-right">0</TableCell>
+                          </TableRow>
+                        ))}
+                        {/* Empty rows for padding if needed */}
+                        {customFields.earnings.length === 0 && Array.from({ length: 2 }).map((_, i) => (
+                          <TableRow key={`empty-earning-${i}`}>
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell>&nbsp;</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                  
+                  <div className="border-t">
+                    <div className="bg-indigo-900 text-white p-2 text-center">Deductions</div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Description</TableHead>
+                          <TableHead className="text-right">Amount</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>Provident Fund</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.providentFund}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>ESI</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.esi}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>P Tax</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.tax}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>TDS</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.tds}</TableCell>
+                        </TableRow>
+                        {customFields.deductions.map((field, index) => (
+                          <TableRow key={`deduction-${index}`}>
+                            <TableCell>{field}</TableCell>
+                            <TableCell className="text-right">0</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Totals */}
-              <div className="grid grid-cols-2 border-t">
-                <div className="border-r">
+                
+                {/* Totals */}
+                <div className="grid grid-cols-2 border-t">
+                  <div className="border-r">
+                    <Table>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="font-medium">Total Earnings</TableCell>
+                          <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
+                          <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
+                  <div>
+                    <Table>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="font-medium">Total Deduction</TableCell>
+                          <TableCell className="text-right">{salarySlipData.totalDeduction}</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+                
+                {/* Net Pay */}
+                <div className="border-t">
                   <Table>
                     <TableBody>
                       <TableRow>
-                        <TableCell className="font-medium">Total Earnings</TableCell>
-                        <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
-                        <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
+                        <TableCell className="font-medium">Net Pay</TableCell>
+                        <TableCell className="text-right">{salarySlipData.netPay}</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </div>
-                <div>
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="font-medium">Total Deduction</TableCell>
-                        <TableCell className="text-right">{salarySlipData.totalDeduction}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
+                
+                {/* Note */}
+                <div className="border-t p-2 text-center text-sm italic">
+                  "This is Computer generated Payslip. Signature not required."
+                </div>
+                
+                {/* Signatures */}
+                <div className="border-t grid grid-cols-2 p-4">
+                  <div>Employee Signature:</div>
+                  <div className="text-right">HR Signature:</div>
                 </div>
               </div>
-              
-              {/* Net Pay */}
-              <div className="border-t">
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Net Pay</TableCell>
-                      <TableCell className="text-right">{salarySlipData.netPay}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-              
-              {/* Note */}
-              <div className="border-t p-2 text-center text-sm italic">
-                "This is Computer generated Payslip. Signature not required."
-              </div>
-              
-              {/* Signatures */}
-              <div className="border-t grid grid-cols-2 p-4">
-                <div>Employee Signature:</div>
-                <div className="text-right">HR Signature:</div>
-              </div>
-            </div>
+            </ScrollArea>
           )}
           
           <DialogFooter>
@@ -448,90 +451,92 @@ const PayslipGenerator: React.FC = () => {
       
       {/* Custom Fields Dialog */}
       <Dialog open={isCustomDialogOpen} onOpenChange={setIsCustomDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-h-[90vh]">
           <DialogHeader>
             <DialogTitle>Custom Fields</DialogTitle>
           </DialogHeader>
           
-          <div className="space-y-4">
-            <div>
-              <Label>Earnings</Label>
-              <div className="space-y-2 mt-2">
-                {customFields.earnings.map((field, index) => (
-                  <div key={`earning-field-${index}`} className="flex items-center gap-2">
-                    <Input value={field} readOnly />
+          <ScrollArea className="h-[calc(90vh-180px)]">
+            <div className="space-y-4 pr-4">
+              <div>
+                <Label>Earnings</Label>
+                <div className="space-y-2 mt-2">
+                  {customFields.earnings.map((field, index) => (
+                    <div key={`earning-field-${index}`} className="flex items-center gap-2">
+                      <Input value={field} readOnly />
+                      <Button 
+                        variant="destructive" 
+                        size="sm"
+                        onClick={() => setCustomFields({
+                          ...customFields,
+                          earnings: customFields.earnings.filter((_, i) => i !== index)
+                        })}
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  ))}
+                  <div className="flex items-center gap-2 mt-2">
+                    <Input 
+                      placeholder="New Earning Field"
+                      id="newEarningField"
+                    />
                     <Button 
-                      variant="destructive" 
                       size="sm"
-                      onClick={() => setCustomFields({
-                        ...customFields,
-                        earnings: customFields.earnings.filter((_, i) => i !== index)
-                      })}
+                      onClick={() => {
+                        const input = document.getElementById("newEarningField") as HTMLInputElement;
+                        if (input.value) {
+                          handleAddCustomField('earnings', input.value);
+                          input.value = '';
+                        }
+                      }}
                     >
-                      Remove
+                      Add
                     </Button>
                   </div>
-                ))}
-                <div className="flex items-center gap-2 mt-2">
-                  <Input 
-                    placeholder="New Earning Field"
-                    id="newEarningField"
-                  />
-                  <Button 
-                    size="sm"
-                    onClick={() => {
-                      const input = document.getElementById("newEarningField") as HTMLInputElement;
-                      if (input.value) {
-                        handleAddCustomField('earnings', input.value);
-                        input.value = '';
-                      }
-                    }}
-                  >
-                    Add
-                  </Button>
+                </div>
+              </div>
+              
+              <div>
+                <Label>Deductions</Label>
+                <div className="space-y-2 mt-2">
+                  {customFields.deductions.map((field, index) => (
+                    <div key={`deduction-field-${index}`} className="flex items-center gap-2">
+                      <Input value={field} readOnly />
+                      <Button 
+                        variant="destructive" 
+                        size="sm"
+                        onClick={() => setCustomFields({
+                          ...customFields,
+                          deductions: customFields.deductions.filter((_, i) => i !== index)
+                        })}
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  ))}
+                  <div className="flex items-center gap-2 mt-2">
+                    <Input 
+                      placeholder="New Deduction Field"
+                      id="newDeductionField"
+                    />
+                    <Button 
+                      size="sm"
+                      onClick={() => {
+                        const input = document.getElementById("newDeductionField") as HTMLInputElement;
+                        if (input.value) {
+                          handleAddCustomField('deductions', input.value);
+                          input.value = '';
+                        }
+                      }}
+                    >
+                      Add
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            <div>
-              <Label>Deductions</Label>
-              <div className="space-y-2 mt-2">
-                {customFields.deductions.map((field, index) => (
-                  <div key={`deduction-field-${index}`} className="flex items-center gap-2">
-                    <Input value={field} readOnly />
-                    <Button 
-                      variant="destructive" 
-                      size="sm"
-                      onClick={() => setCustomFields({
-                        ...customFields,
-                        deductions: customFields.deductions.filter((_, i) => i !== index)
-                      })}
-                    >
-                      Remove
-                    </Button>
-                  </div>
-                ))}
-                <div className="flex items-center gap-2 mt-2">
-                  <Input 
-                    placeholder="New Deduction Field"
-                    id="newDeductionField"
-                  />
-                  <Button 
-                    size="sm"
-                    onClick={() => {
-                      const input = document.getElementById("newDeductionField") as HTMLInputElement;
-                      if (input.value) {
-                        handleAddCustomField('deductions', input.value);
-                        input.value = '';
-                      }
-                    }}
-                  >
-                    Add
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+          </ScrollArea>
           
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsCustomDialogOpen(false)}>Done</Button>
@@ -541,200 +546,204 @@ const PayslipGenerator: React.FC = () => {
       
       {/* Print Preview Dialog */}
       <Dialog open={isPrintPreviewOpen} onOpenChange={setIsPrintPreviewOpen}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-4xl max-h-[90vh]">
           <DialogHeader>
             <DialogTitle>Print Preview</DialogTitle>
           </DialogHeader>
+          
           {salarySlipData && (
-            <div className="border rounded-md overflow-hidden print:shadow-none">
-              {/* Company Header */}
-              <div className="bg-indigo-900 text-white p-4">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                  <div className="text-2xl font-bold">SUPRA PENS</div>
-                  <div className="text-center md:text-right">
-                    <div className="text-lg">GLOBAL WRITINGS</div>
-                    <div className="text-xs">22, BRABOURNE ROAD, 3RD FLOOR, KOLKATA 70001, WEST BENGAL, INDIA</div>
-                    <div className="text-xs">+91 33 2221 8538/ 2234 3007</div>
+            <ScrollArea className="h-[calc(90vh-180px)]">
+              <div className="border rounded-md overflow-hidden print:shadow-none">
+                {/* Company Header */}
+                <div className="bg-indigo-900 text-white p-4">
+                  <div className="flex flex-col md:flex-row justify-between items-center">
+                    <div className="text-2xl font-bold">SUPRA PENS</div>
+                    <div className="text-center md:text-right">
+                      <div className="text-lg">GLOBAL WRITINGS</div>
+                      <div className="text-xs">22, BRABOURNE ROAD, 3RD FLOOR, KOLKATA 70001, WEST BENGAL, INDIA</div>
+                      <div className="text-xs">+91 33 2221 8538/ 2234 3007</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="bg-indigo-900 text-white py-1 text-center">
-                <h2 className="text-lg font-medium">Salary Slip</h2>
-              </div>
-              
-              {/* Employee Details */}
-              <div className="p-0">
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Employee Name:</TableCell>
-                      <TableCell>{salarySlipData.employeeName}</TableCell>
-                      <TableCell className="font-medium">Month</TableCell>
-                      <TableCell>{salarySlipData.month}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Employee PAN No:</TableCell>
-                      <TableCell>{salarySlipData.employeePAN}</TableCell>
-                      <TableCell className="font-medium">Year</TableCell>
-                      <TableCell>{salarySlipData.year}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Employee ID:</TableCell>
-                      <TableCell>{salarySlipData.employeeId}</TableCell>
-                      <TableCell className="font-medium">Designation</TableCell>
-                      <TableCell>{salarySlipData.designation}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">D.O.J.:</TableCell>
-                      <TableCell>{salarySlipData.doj}</TableCell>
-                      <TableCell className="font-medium">Working Days</TableCell>
-                      <TableCell>{salarySlipData.workingDays}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">UAN NO:</TableCell>
-                      <TableCell>{salarySlipData.uan}</TableCell>
-                      <TableCell className="font-medium">Unpaid Leave</TableCell>
-                      <TableCell>{salarySlipData.unpaidLeave}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">ESIC NO:</TableCell>
-                      <TableCell>{salarySlipData.esic}</TableCell>
-                      <TableCell className="font-medium">Paid Days</TableCell>
-                      <TableCell>{salarySlipData.paidDays}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-              
-              {/* Earnings and Deductions */}
-              <div className="grid grid-cols-2">
-                <div className="border-t border-r">
-                  <div className="bg-indigo-900 text-white p-2 text-center">Earnings</div>
+                
+                <div className="bg-indigo-900 text-white py-1 text-center">
+                  <h2 className="text-lg font-medium">Salary Slip</h2>
+                </div>
+                
+                {/* Employee Details */}
+                <div className="p-0">
                   <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Description</TableHead>
-                        <TableHead className="text-right">Rate</TableHead>
-                        <TableHead className="text-right">Earned</TableHead>
-                      </TableRow>
-                    </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell>Basic Pay</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
+                        <TableCell className="font-medium">Employee Name:</TableCell>
+                        <TableCell>{salarySlipData.employeeName}</TableCell>
+                        <TableCell className="font-medium">Month</TableCell>
+                        <TableCell>{salarySlipData.month}</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>House Rent Allowance</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
-                        <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
+                        <TableCell className="font-medium">Employee PAN No:</TableCell>
+                        <TableCell>{salarySlipData.employeePAN}</TableCell>
+                        <TableCell className="font-medium">Year</TableCell>
+                        <TableCell>{salarySlipData.year}</TableCell>
                       </TableRow>
-                      {customFields.earnings.map((field, index) => (
-                        <TableRow key={`earning-${index}`}>
-                          <TableCell>{field}</TableCell>
-                          <TableCell className="text-right">0</TableCell>
-                          <TableCell className="text-right">0</TableCell>
-                        </TableRow>
-                      ))}
-                      {/* Empty rows for padding if needed */}
-                      {customFields.earnings.length === 0 && Array.from({ length: 2 }).map((_, i) => (
-                        <TableRow key={`empty-earning-${i}`}>
-                          <TableCell>&nbsp;</TableCell>
-                          <TableCell>&nbsp;</TableCell>
-                          <TableCell>&nbsp;</TableCell>
-                        </TableRow>
-                      ))}
+                      <TableRow>
+                        <TableCell className="font-medium">Employee ID:</TableCell>
+                        <TableCell>{salarySlipData.employeeId}</TableCell>
+                        <TableCell className="font-medium">Designation</TableCell>
+                        <TableCell>{salarySlipData.designation}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">D.O.J.:</TableCell>
+                        <TableCell>{salarySlipData.doj}</TableCell>
+                        <TableCell className="font-medium">Working Days</TableCell>
+                        <TableCell>{salarySlipData.workingDays}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">UAN NO:</TableCell>
+                        <TableCell>{salarySlipData.uan}</TableCell>
+                        <TableCell className="font-medium">Unpaid Leave</TableCell>
+                        <TableCell>{salarySlipData.unpaidLeave}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">ESIC NO:</TableCell>
+                        <TableCell>{salarySlipData.esic}</TableCell>
+                        <TableCell className="font-medium">Paid Days</TableCell>
+                        <TableCell>{salarySlipData.paidDays}</TableCell>
+                      </TableRow>
                     </TableBody>
                   </Table>
                 </div>
                 
-                <div className="border-t">
-                  <div className="bg-indigo-900 text-white p-2 text-center">Deductions</div>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Description</TableHead>
-                        <TableHead className="text-right">Amount</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell>Provident Fund</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.providentFund}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>ESI</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.esi}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>P Tax</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.tax}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>TDS</TableCell>
-                        <TableCell className="text-right">{salarySlipData.deductions.tds}</TableCell>
-                      </TableRow>
-                      {customFields.deductions.map((field, index) => (
-                        <TableRow key={`deduction-${index}`}>
-                          <TableCell>{field}</TableCell>
-                          <TableCell className="text-right">0</TableCell>
+                {/* Earnings and Deductions */}
+                <div className="grid grid-cols-2">
+                  <div className="border-t border-r">
+                    <div className="bg-indigo-900 text-white p-2 text-center">Earnings</div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Description</TableHead>
+                          <TableHead className="text-right">Rate</TableHead>
+                          <TableHead className="text-right">Earned</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>Basic Pay</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.basicPay}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>House Rent Allowance</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
+                          <TableCell className="text-right">{salarySlipData.earnings.houseRentAllowance}</TableCell>
+                        </TableRow>
+                        {customFields.earnings.map((field, index) => (
+                          <TableRow key={`earning-${index}`}>
+                            <TableCell>{field}</TableCell>
+                            <TableCell className="text-right">0</TableCell>
+                            <TableCell className="text-right">0</TableCell>
+                          </TableRow>
+                        ))}
+                        {/* Empty rows for padding if needed */}
+                        {customFields.earnings.length === 0 && Array.from({ length: 2 }).map((_, i) => (
+                          <TableRow key={`empty-earning-${i}`}>
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell>&nbsp;</TableCell>
+                            <TableCell>&nbsp;</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                  
+                  <div className="border-t">
+                    <div className="bg-indigo-900 text-white p-2 text-center">Deductions</div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Description</TableHead>
+                          <TableHead className="text-right">Amount</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>Provident Fund</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.providentFund}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>ESI</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.esi}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>P Tax</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.tax}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>TDS</TableCell>
+                          <TableCell className="text-right">{salarySlipData.deductions.tds}</TableCell>
+                        </TableRow>
+                        {customFields.deductions.map((field, index) => (
+                          <TableRow key={`deduction-${index}`}>
+                            <TableCell>{field}</TableCell>
+                            <TableCell className="text-right">0</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Totals */}
-              <div className="grid grid-cols-2 border-t">
-                <div className="border-r">
+                
+                {/* Totals */}
+                <div className="grid grid-cols-2 border-t">
+                  <div className="border-r">
+                    <Table>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="font-medium">Total Earnings</TableCell>
+                          <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
+                          <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
+                  <div>
+                    <Table>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="font-medium">Total Deduction</TableCell>
+                          <TableCell className="text-right">{salarySlipData.totalDeduction}</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+                
+                {/* Net Pay */}
+                <div className="border-t">
                   <Table>
                     <TableBody>
                       <TableRow>
-                        <TableCell className="font-medium">Total Earnings</TableCell>
-                        <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
-                        <TableCell className="text-right">{salarySlipData.totalEarnings}</TableCell>
+                        <TableCell className="font-medium">Net Pay</TableCell>
+                        <TableCell className="text-right">{salarySlipData.netPay}</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </div>
-                <div>
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="font-medium">Total Deduction</TableCell>
-                        <TableCell className="text-right">{salarySlipData.totalDeduction}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
+                
+                {/* Note */}
+                <div className="border-t p-2 text-center text-sm italic">
+                  "This is Computer generated Payslip. Signature not required."
+                </div>
+                
+                {/* Signatures */}
+                <div className="border-t grid grid-cols-2 p-4">
+                  <div>Employee Signature:</div>
+                  <div className="text-right">HR Signature:</div>
                 </div>
               </div>
-              
-              {/* Net Pay */}
-              <div className="border-t">
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Net Pay</TableCell>
-                      <TableCell className="text-right">{salarySlipData.netPay}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-              
-              {/* Note */}
-              <div className="border-t p-2 text-center text-sm italic">
-                "This is Computer generated Payslip. Signature not required."
-              </div>
-              
-              {/* Signatures */}
-              <div className="border-t grid grid-cols-2 p-4">
-                <div>Employee Signature:</div>
-                <div className="text-right">HR Signature:</div>
-              </div>
-            </div>
+            </ScrollArea>
           )}
+          
           <DialogFooter>
             <Button onClick={() => {
               window.print();
